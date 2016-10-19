@@ -69,6 +69,12 @@ for l in dci_board.all_lists():
             c.list = l
             c.members = [client.get_member(i) for i in c.member_ids]
             c.status = ACTIVE_lISTS[l.name]
+            c.fetch(eager=True)
+            c.checklist_items = []
+            try:
+                c.checklist_items = c._checklists[0].items
+            except IndexError:
+                pass
             stories = get_stories(client, c)
             if not stories:
                 stories += ['other']

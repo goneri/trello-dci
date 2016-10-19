@@ -53,6 +53,22 @@
                   {{ card.description }}
                 {% endmarkdown %}
                 <ul>
+                    <div class="panel panel-default">
+                      <div class="panel-heading">Progress</div>
+                      <div class="panel-body">
+                        <ul>
+                        {% for check in card.checklist_items %}
+                          <li>
+                            {% if check.checked %}<del>{% endif %}
+                            {{ check.name }}
+                            {% if check.checked %}</del>{% endif %}
+                        </li>
+                        {% endfor %}
+                        </ul>
+                      </div>
+                    </div>
+                </ul>
+                <ul>
                   {% if card.members %}
                     <div class="panel panel-default">
                       <div class="panel-heading">Involved in this story</div>
