@@ -56,7 +56,7 @@ def get_stories(client, card):
     for p in plugin_data:
         if p.get('idPlugin') == FREE_FIELD_PLUGIN_ID:
             value = json.loads(p['value'])
-            fields = [STORIES[i] for i, v in value['fields'].items()]
+            fields = [STORIES[i] for i, v in value['fields'].items() if v]
     return fields
 
 progress_cpt = {}
