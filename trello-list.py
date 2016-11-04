@@ -44,10 +44,8 @@ class Cpt(object):
         for v in self.cur.values():
             s += v
         result = {}
-        print(self.cur)
         for i, v in self.cur.items():
             result[i] = int(float(v) * 100 / s)
-        print(result)
         return result
 
 def get_stories(client, card):
@@ -92,7 +90,7 @@ env.add_extension(MarkdownExtension)
 for story, cards in cards_by_story.items():
     template = env.get_template('story.html.j2')
     with open(story + '.html', 'w') as fd:
-        card_by_status = {c.status: [] for c in cards}
+        card_by_status = {'done': [], 'in progress': [], 'to do': []}
         for c in cards:
             card_by_status[c.status].append(c)
         fd.write(template.render(
